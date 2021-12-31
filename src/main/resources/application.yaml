@@ -1,0 +1,27 @@
+spring:
+  jpa:
+    generate-ddl: true
+    hibernate.ddl-auto: update
+  cache:
+    caffeine:
+      enabled: true
+      cache-names:
+      spec: maximumSize=10000,expireAfterWrite=60s,recordStats
+datasource:
+  primary:
+    enabled: true
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/vulinh
+    username: root
+    password: 123456
+  secondary:
+    enabled: true
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;databaseName=vulinh;
+    username: sa
+    password: 123456
+logging.level:
+  org.hibernate.SQL: debug
+  org.springframework.cache: trace
+  com.vulinh.configuration.cache.keygenerator.FindAllPagingKeyGenerator: debug
+  com.vulinh.configuration.cache.keygenerator.FindByIdKeyGenerator: debug
