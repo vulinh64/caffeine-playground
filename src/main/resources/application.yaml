@@ -1,3 +1,4 @@
+server.servlet.context-path: /caffeine-playground
 spring:
   jpa:
     generate-ddl: true
