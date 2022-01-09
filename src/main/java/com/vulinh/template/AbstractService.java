@@ -7,10 +7,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.function.Supplier;
 
 @RequiredArgsConstructor
-public abstract class AbstractService<
-    I, E extends AbstractEntity, D extends AbstractDTO,
-    V extends AbstractValidator<D>, M extends AbstractMapper<E, D>, R extends FailFastJpaRepository<I, E>
-    > {
+public abstract class AbstractService<I, E extends AbstractEntity, D extends AbstractDTO, R extends FailFastJpaRepository<I, E>> {
 
     protected D findById(I id) {
         return mapper.toDto(repository.findById(id, notFoundExceptionSupplier));
@@ -60,7 +57,7 @@ public abstract class AbstractService<
     }
 
     private final Supplier<? extends RuntimeException> notFoundExceptionSupplier;
-    private final V validator;
-    private final M mapper;
+    private final AbstractValidator<D> validator;
+    private final AbstractMapper<E, D> mapper;
     private final R repository;
 }
