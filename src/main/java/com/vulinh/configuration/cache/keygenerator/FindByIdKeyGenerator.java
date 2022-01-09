@@ -13,9 +13,9 @@ public class FindByIdKeyGenerator implements KeyGenerator {
 
     @Override
     public Object generate(Object target, Method method, Object... params) {
-        String id = String.valueOf(params[0]);
-        
-        String result = String.format("%s-%s-id-%s", target.getClass().getName(), method.getName(), id);
+        var id = String.valueOf(params[0]);
+
+        var result = String.format("%s-%s-id-%s", target.getClass().getName(), method.getName(), id);
 
         log.debug("Generated key: {}", result);
 

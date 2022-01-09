@@ -30,7 +30,7 @@ public abstract class AbstractService<I, E extends AbstractEntity, D extends Abs
     }
 
     protected D delete(I id) {
-        E deletedEntity = repository.findById(id, notFoundExceptionSupplier);
+        var deletedEntity = repository.findById(id, notFoundExceptionSupplier);
         return delete(deletedEntity);
     }
 
@@ -52,7 +52,7 @@ public abstract class AbstractService<I, E extends AbstractEntity, D extends Abs
     }
 
     private D performSaveOrUpdate(D dto) {
-        E entity = mapper.toEntity(dto);
+        var entity = mapper.toEntity(dto);
         return mapper.toDto(repository.saveAndFlush(entity));
     }
 
