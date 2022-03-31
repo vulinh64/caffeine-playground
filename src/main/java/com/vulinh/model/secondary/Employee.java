@@ -26,6 +26,8 @@ import java.time.LocalDate;
 @Builder
 public class Employee extends AbstractEntity {
 
+    private static final long serialVersionUID = 3624882108855436398L;
+
     @Id
     @Column(name = "id")
     @EqualsAndHashCode.Include
@@ -38,7 +40,7 @@ public class Employee extends AbstractEntity {
     private String lastName;
 
     @Column(name = "gender")
-    private int gender;
+    private Integer gender;
 
     @Column(name = "birth_date")
     private LocalDate birthDate;

@@ -38,10 +38,10 @@ public class CaffeineConfiguration {
         Caffeine<Object, Object> caffeine,
         CaffeineConfigurationProperties caffeineConfigurationProperties
     ) {
-        CaffeineCacheManager caffeineCacheManager = new CaffeineCacheManager();
+        var caffeineCacheManager = new CaffeineCacheManager();
 
         var cacheNames = caffeineConfigurationProperties.getCacheNames();
-        
+
         caffeineCacheManager.setCacheNames(StringUtils.isBlank(cacheNames) ? null : Arrays.asList(cacheNames.trim().split(",")));
         caffeineCacheManager.setCaffeine(caffeine);
 

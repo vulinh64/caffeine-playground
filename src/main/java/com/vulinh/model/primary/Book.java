@@ -26,6 +26,8 @@ import java.time.LocalDate;
 @Builder
 public class Book extends AbstractEntity {
 
+    private static final long serialVersionUID = 1116229858561618969L;
+    
     @Id
     @Column(name = "id")
     @EqualsAndHashCode.Include
