@@ -12,12 +12,16 @@ import java.util.function.Supplier;
 @NoRepositoryBean
 public interface FailFastJpaRepository<I, E extends AbstractEntity> extends JpaRepository<E, I> {
 
-    @Cacheable(cacheNames = CacheConstant.FIND_BY_ID_CACHE, keyGenerator = CacheConstant.FIND_BY_ID_GEN_BEAN)
-    default E findById(I id, Supplier<? extends RuntimeException> exceptionSupplier) {
-        return findById(id).orElseThrow(exceptionSupplier);
-    }
+  @Cacheable(
+      cacheNames = CacheConstant.FIND_BY_ID_CACHE,
+      keyGenerator = CacheConstant.FIND_BY_ID_GEN_BEAN)
+  default E findById(I id, Supplier<? extends RuntimeException> exceptionSupplier) {
+    return findById(id).orElseThrow(exceptionSupplier);
+  }
 
-    @Override
-    @Cacheable(cacheNames = CacheConstant.FIND_ALL_PAGING, keyGenerator = CacheConstant.FIND_ALL_PAGING_GEN_BEAN)
-    Page<E> findAll(Pageable pageable);
+  @Override
+  @Cacheable(
+      cacheNames = CacheConstant.FIND_ALL_PAGING,
+      keyGenerator = CacheConstant.FIND_ALL_PAGING_GEN_BEAN)
+  Page<E> findAll(Pageable pageable);
 }

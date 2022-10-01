@@ -8,7 +8,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @Data
 public class CaffeineConfigurationProperties {
 
-    private String cacheNames;
-    private String spec;
-
+  private String cacheNames;
+  private String spec;
 }

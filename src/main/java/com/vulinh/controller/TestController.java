@@ -14,26 +14,27 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class TestController {
 
-    private final BookRepository bookRepository;
-    private final EmployeeRepository employeeRepository;
+  private final BookRepository bookRepository;
+  private final EmployeeRepository employeeRepository;
 
-    @GetMapping("/employee/id/{id}")
-    public Object getEmployee(@PathVariable("id") String id) {
-        return employeeRepository.findById(id, () -> new UnsupportedOperationException("Not supported"));
-    }
+  @GetMapping("/employee/id/{id}")
+  public Object getEmployee(@PathVariable("id") String id) {
+    return employeeRepository.findById(
+        id, () -> new UnsupportedOperationException("Not supported"));
+  }
 
-    @GetMapping("/employee/all")
-    public Object allEmployees(Pageable pageable) {
-        return employeeRepository.findAll(pageable);
-    }
+  @GetMapping("/employee/all")
+  public Object allEmployees(Pageable pageable) {
+    return employeeRepository.findAll(pageable);
+  }
 
-    @GetMapping("/book/id/{id}")
-    public Object getBook(@PathVariable("id") String id) {
-        return bookRepository.findById(id, () -> new UnsupportedOperationException("Not supported"));
-    }
+  @GetMapping("/book/id/{id}")
+  public Object getBook(@PathVariable("id") String id) {
+    return bookRepository.findById(id, () -> new UnsupportedOperationException("Not supported"));
+  }
 
-    @GetMapping("/book/all")
-    public Object allBooks(Pageable pageable) {
-        return bookRepository.findAll(pageable);
-    }
+  @GetMapping("/book/all")
+  public Object allBooks(Pageable pageable) {
+    return bookRepository.findAll(pageable);
+  }
 }

@@ -20,20 +20,20 @@ import java.time.LocalDateTime;
 @ToString
 public abstract class AbstractEntity implements Serializable {
 
-    private static final long serialVersionUID = -5162043753800272849L;
+  private static final long serialVersionUID = -5162043753800272849L;
 
-    @CreatedDate
-    @Column(name = "created_date")
-    protected LocalDateTime createdDate;
+  @CreatedDate
+  @Column(name = "created_date")
+  protected LocalDateTime createdDate;
 
-    @LastModifiedDate
-    @Column(name = "updated_date")
-    protected LocalDateTime updatedDate;
+  @LastModifiedDate
+  @Column(name = "updated_date")
+  protected LocalDateTime updatedDate;
 
-    @Column(name = "is_deleted")
-    protected boolean isDeleted;
+  @Column(name = "is_deleted")
+  protected boolean isDeleted;
 
-    public void markAsRemoved() {
-        isDeleted = true;
-    }
+  public void markAsRemoved() {
+    isDeleted = true;
+  }
 }

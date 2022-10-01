@@ -6,5 +6,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class PropertyConstant {
 
-    public static final String TRUE = "true";
+  public static final String TRUE = "true";
 }

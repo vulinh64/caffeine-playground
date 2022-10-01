@@ -20,44 +20,44 @@ import javax.sql.DataSource;
 
 @Configuration
 @ConditionalOnProperty(
-    prefix = DataSourceProperty.DATASOURCE_PREFIX + SecondaryDatasourceConfiguration.PERSISTENCE_UNIT,
+    prefix =
+        DataSourceProperty.DATASOURCE_PREFIX + SecondaryDatasourceConfiguration.PERSISTENCE_UNIT,
     name = DataSourceProperty.ENABLED_PROPS,
-    havingValue = PropertyConstant.TRUE
-)
+    havingValue = PropertyConstant.TRUE)
 @EnableTransactionManagement
 @EnableJpaRepositories(
     basePackageClasses = SecondaryBaseRepository.class,
-    entityManagerFactoryRef = SecondaryDatasourceConfiguration.PERSISTENCE_UNIT + DataSourceProperty.ENTITY_MANAGER,
-    transactionManagerRef = SecondaryDatasourceConfiguration.PERSISTENCE_UNIT + DataSourceProperty.TRANSACTION_MANAGER
-)
+    entityManagerFactoryRef =
+        SecondaryDatasourceConfiguration.PERSISTENCE_UNIT + DataSourceProperty.ENTITY_MANAGER,
+    transactionManagerRef =
+        SecondaryDatasourceConfiguration.PERSISTENCE_UNIT + DataSourceProperty.TRANSACTION_MANAGER)
 public class SecondaryDatasourceConfiguration extends DataSourceProperty {
 
-    public static final String PERSISTENCE_UNIT = SECONDARY_PERSISTENCE_UNIT;
-    public static final Class<?> ENTITY_BASE_CLASS = SecondaryBaseEntity.class;
+  public static final String PERSISTENCE_UNIT = SECONDARY_PERSISTENCE_UNIT;
+  public static final Class<?> ENTITY_BASE_CLASS = SecondaryBaseEntity.class;
 
-    @Bean(PERSISTENCE_UNIT + DATASOURCE_PROPERTIES)
-    @ConfigurationProperties(DataSourceProperty.DATASOURCE_PREFIX + PERSISTENCE_UNIT)
-    public DataSourceProperties primaryDataSourceProperties() {
-        return new DataSourceProperties();
-    }
+  @Bean(PERSISTENCE_UNIT + DATASOURCE_PROPERTIES)
+  @ConfigurationProperties(DataSourceProperty.DATASOURCE_PREFIX + PERSISTENCE_UNIT)
+  public DataSourceProperties primaryDataSourceProperties() {
+    return new DataSourceProperties();
+  }
 
-    @Bean(PERSISTENCE_UNIT + DATASOURCE)
-    @ConfigurationProperties(DATASOURCE_PREFIX + PERSISTENCE_UNIT + CONFIGURATION_SUFFIX)
-    public DataSource primaryDataSource() {
-        return initDataSource(primaryDataSourceProperties());
-    }
+  @Bean(PERSISTENCE_UNIT + DATASOURCE)
+  @ConfigurationProperties(DATASOURCE_PREFIX + PERSISTENCE_UNIT + CONFIGURATION_SUFFIX)
+  public DataSource primaryDataSource() {
+    return initDataSource(primaryDataSourceProperties());
+  }
 
-    @Bean(PERSISTENCE_UNIT + ENTITY_MANAGER)
-    public LocalContainerEntityManagerFactoryBean primaryEntityManagerFactory(EntityManagerFactoryBuilder entityManagerFactoryBuilder) {
-        return initEntityMangerFactoryBean(
-            entityManagerFactoryBuilder, primaryDataSource(), ENTITY_BASE_CLASS, PERSISTENCE_UNIT
-        );
-    }
+  @Bean(PERSISTENCE_UNIT + ENTITY_MANAGER)
+  public LocalContainerEntityManagerFactoryBean primaryEntityManagerFactory(
+      EntityManagerFactoryBuilder entityManagerFactoryBuilder) {
+    return initEntityMangerFactoryBean(
+        entityManagerFactoryBuilder, primaryDataSource(), ENTITY_BASE_CLASS, PERSISTENCE_UNIT);
+  }
 
-    @Bean(PERSISTENCE_UNIT + TRANSACTION_MANAGER)
-    public PlatformTransactionManager primaryTransactionManager(
-        @Qualifier(PERSISTENCE_UNIT + ENTITY_MANAGER) EntityManagerFactory entityManagerFactory
-    ) {
-        return initTransactionManager(entityManagerFactory);
-    }
+  @Bean(PERSISTENCE_UNIT + TRANSACTION_MANAGER)
+  public PlatformTransactionManager primaryTransactionManager(
+      @Qualifier(PERSISTENCE_UNIT + ENTITY_MANAGER) EntityManagerFactory entityManagerFactory) {
+    return initTransactionManager(entityManagerFactory);
+  }
 }

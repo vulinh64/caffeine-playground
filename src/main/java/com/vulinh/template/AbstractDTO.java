@@ -16,11 +16,10 @@ import java.time.LocalDateTime;
 @JsonInclude(Include.NON_NULL)
 public abstract class AbstractDTO implements Serializable {
 
-    private static final long serialVersionUID = -6123040993496246510L;
+  private static final long serialVersionUID = -6123040993496246510L;
 
-    private LocalDateTime createdDate;
-    private LocalDateTime updatedDate;
+  private LocalDateTime createdDate;
+  private LocalDateTime updatedDate;
 
-    @JsonIgnore
-    private boolean isDeleted;
+  @JsonIgnore private boolean isDeleted;
 }

@@ -6,6 +6,5 @@ import com.vulinh.template.AbstractMapper;
 import org.mapstruct.Builder;
 import org.mapstruct.Mapper;
 
-@Mapper(componentModel = "spring", builder = @Builder(disableBuilder = true))
-public interface BookMapper extends AbstractMapper<Book, BookDTO> {
-}
+@Mapper(builder = @Builder(disableBuilder = true))
+public interface BookMapper extends AbstractMapper<Book, BookDTO> {}

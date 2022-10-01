@@ -11,14 +11,14 @@ import java.lang.reflect.Method;
 @Slf4j
 public class FindByIdKeyGenerator implements KeyGenerator {
 
-    @Override
-    public Object generate(Object target, Method method, Object... params) {
-        var id = String.valueOf(params[0]);
+  @Override
+  public Object generate(Object target, Method method, Object... params) {
+    var id = String.valueOf(params[0]);
 
-        var result = String.format("%s-%s-id-%s", target.getClass().getName(), method.getName(), id);
+    var result = String.format("%s-%s-id-%s", target.getClass().getName(), method.getName(), id);
 
-        log.debug("Generated key: {}", result);
+    log.debug("Generated key: {}", result);
 
-        return result;
-    }
+    return result;
+  }
 }
